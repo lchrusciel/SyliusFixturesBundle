@@ -27,6 +27,7 @@ final class Kernel extends HttpKernel
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new \Sylius\Bundle\FixturesBundle\SyliusFixturesBundle(),
+            new \AppBundle\AppBundle(),
         ];
     }
 

@@ -47,7 +47,8 @@
     "autoload-dev": {
         "psr-4": {
             "spec\\Sylius\\Bundle\\FixturesBundle\\": "spec/",
-            "Sylius\\Bundle\\FixturesBundle\\Tests\\": "tests/"
+            "Sylius\\Bundle\\FixturesBundle\\Tests\\": "tests/",
+            "AppBundle\\": "tests/Application/src/"
         }
     },
     "scripts": {

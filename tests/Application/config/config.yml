@@ -11,3 +11,26 @@ doctrine:
         entity_managers:
             default:
                 auto_mapping: true
+
+sylius_fixtures:
+    suites:
+        default:
+            listeners:
+                logger: ~
+                orm_purger: ~
+            fixtures:
+                sample:
+                    options:
+                        samples:
+                            - one
+        extended:
+            listeners:
+                suite_loader:
+                    options:
+                        suites:
+                            - "default"
+            fixtures:
+                sample:
+                    options:
+                        samples:
+                            - two
