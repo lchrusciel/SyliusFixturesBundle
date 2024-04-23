@@ -20,7 +20,6 @@ final class PriorityQueue implements \IteratorAggregate
 {
     /**
      * @psalm-var array<int, array{data: array, priority: int}>
-     *
      * @var array[]
      */
     private array $records = [];
