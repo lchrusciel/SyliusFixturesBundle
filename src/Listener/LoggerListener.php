@@ -17,11 +17,8 @@ use Psr\Log\LoggerInterface;
 
 final class LoggerListener extends AbstractListener implements BeforeSuiteListenerInterface, BeforeFixtureListenerInterface
 {
-    private LoggerInterface $logger;
-
-    public function __construct(LoggerInterface $logger)
+    public function __construct(private LoggerInterface $logger)
     {
-        $this->logger = $logger;
     }
 
     /** @param array<mixed> $options */

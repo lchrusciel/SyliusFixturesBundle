@@ -20,11 +20,8 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 final class MongoDBPurgerListener extends AbstractListener implements BeforeSuiteListenerInterface
 {
-    private ManagerRegistry $managerRegistry;
-
-    public function __construct(ManagerRegistry $managerRegistry)
+    public function __construct(private ManagerRegistry $managerRegistry)
     {
-        $this->managerRegistry = $managerRegistry;
     }
 
     /** @param array{managers: string[]} $options */

@@ -21,11 +21,8 @@ use Sylius\Bundle\FixturesBundle\Suite\SuiteInterface;
 
 final class HookableFixtureLoader implements FixtureLoaderInterface
 {
-    private FixtureLoaderInterface $decoratedFixtureLoader;
-
-    public function __construct(FixtureLoaderInterface $decoratedFixtureLoader)
+    public function __construct(private FixtureLoaderInterface $decoratedFixtureLoader)
     {
-        $this->decoratedFixtureLoader = $decoratedFixtureLoader;
     }
 
     public function load(SuiteInterface $suite, FixtureInterface $fixture, array $options): void

@@ -18,15 +18,12 @@ use Sylius\Bundle\FixturesBundle\Listener\ListenerInterface;
 
 final class Suite implements SuiteInterface
 {
-    private string $name;
-
     private PriorityQueue $fixtures;
 
     private PriorityQueue $listeners;
 
-    public function __construct(string $name)
+    public function __construct(private string $name)
     {
-        $this->name = $name;
         $this->fixtures = new PriorityQueue();
         $this->listeners = new PriorityQueue();
     }
@@ -48,7 +45,6 @@ final class Suite implements SuiteInterface
         return $this->name;
     }
 
-    /** @returns */
     public function getFixtures(): iterable
     {
         foreach ($this->fixtures as $fixture) {

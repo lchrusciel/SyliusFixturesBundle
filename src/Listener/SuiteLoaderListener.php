@@ -19,14 +19,10 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 final class SuiteLoaderListener extends AbstractListener implements BeforeSuiteListenerInterface
 {
-    private SuiteRegistryInterface $suiteRegistry;
-
-    private SuiteLoaderInterface $suiteLoader;
-
-    public function __construct(SuiteRegistryInterface $suiteRegistry, SuiteLoaderInterface $suiteLoader)
-    {
-        $this->suiteRegistry = $suiteRegistry;
-        $this->suiteLoader = $suiteLoader;
+    public function __construct(
+        private SuiteRegistryInterface $suiteRegistry,
+        private SuiteLoaderInterface $suiteLoader,
+    ) {
     }
 
     public function getName(): string
