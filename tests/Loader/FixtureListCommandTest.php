@@ -76,6 +76,11 @@ Available fixtures:
         );
     }
 
+    /**
+     * @param array<string, array<mixed>> $options
+     *
+     * @return array<string, array{name: string, options: array<string, array<mixed>>}>
+     */
     private function createFixture(string $name, array $options = []): array
     {
         return [

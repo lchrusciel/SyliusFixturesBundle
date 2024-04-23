@@ -15,5 +15,6 @@ namespace Sylius\Bundle\FixturesBundle\Listener;
 
 interface BeforeSuiteListenerInterface extends ListenerInterface
 {
+    /** @param array<mixed> $options */
     public function beforeSuite(SuiteEvent $suiteEvent, array $options): void;
 }

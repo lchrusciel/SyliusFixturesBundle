@@ -17,8 +17,10 @@ final class LazySuiteRegistry implements SuiteRegistryInterface
 {
     private SuiteFactoryInterface $suiteFactory;
 
+    /** @var array<string, array<mixed>> */
     private array $suiteDefinitions = [];
 
+    /** @var array<string, SuiteInterface>> */
     private array $suites = [];
 
     public function __construct(SuiteFactoryInterface $suiteFactory)
@@ -26,6 +28,7 @@ final class LazySuiteRegistry implements SuiteRegistryInterface
         $this->suiteFactory = $suiteFactory;
     }
 
+    /** @param array<mixed> $configuration */
     public function addSuite(string $name, array $configuration): void
     {
         $this->suiteDefinitions[$name] = $configuration;

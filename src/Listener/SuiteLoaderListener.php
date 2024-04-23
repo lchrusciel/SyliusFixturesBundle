@@ -34,6 +34,7 @@ final class SuiteLoaderListener extends AbstractListener implements BeforeSuiteL
         return 'suite_loader';
     }
 
+    /** @param array{suites: string[]} $options */
     public function beforeSuite(SuiteEvent $suiteEvent, array $options): void
     {
         foreach ($options['suites'] as $suiteName) {

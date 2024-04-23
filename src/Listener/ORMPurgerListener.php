@@ -22,6 +22,7 @@ final class ORMPurgerListener extends AbstractListener implements BeforeSuiteLis
 {
     private ManagerRegistry $managerRegistry;
 
+    /** @var array<string, int> */
     private static array $purgeModes = [
         'delete' => ORMPurger::PURGE_MODE_DELETE,
         'truncate' => ORMPurger::PURGE_MODE_TRUNCATE,
@@ -32,6 +33,7 @@ final class ORMPurgerListener extends AbstractListener implements BeforeSuiteLis
         $this->managerRegistry = $managerRegistry;
     }
 
+    /** @param array{managers: string[], exclude: array<int|string>, mode: string} $options */
     public function beforeSuite(SuiteEvent $suiteEvent, array $options): void
     {
         foreach ($options['managers'] as $managerName) {
@@ -39,7 +41,7 @@ final class ORMPurgerListener extends AbstractListener implements BeforeSuiteLis
             $manager = $this->managerRegistry->getManager($managerName);
 
             $purger = new ORMPurger($manager, $options['exclude']);
-            $purger->setPurgeMode(static::$purgeModes[$options['mode']]);
+            $purger->setPurgeMode(self::$purgeModes[$options['mode']]);
             $purger->purge();
         }
     }

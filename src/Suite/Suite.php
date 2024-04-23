@@ -31,11 +31,13 @@ final class Suite implements SuiteInterface
         $this->listeners = new PriorityQueue();
     }
 
+    /** @param array<mixed> $options */
     public function addFixture(FixtureInterface $fixture, array $options, int $priority = 0): void
     {
         $this->fixtures->insert(['fixture' => $fixture, 'options' => $options], $priority);
     }
 
+    /** @param array<mixed> $options */
     public function addListener(ListenerInterface $listener, array $options, int $priority = 0): void
     {
         $this->listeners->insert(['listener' => $listener, 'options' => $options], $priority);
@@ -46,6 +48,7 @@ final class Suite implements SuiteInterface
         return $this->name;
     }
 
+    /** @returns */
     public function getFixtures(): iterable
     {
         foreach ($this->fixtures as $fixture) {

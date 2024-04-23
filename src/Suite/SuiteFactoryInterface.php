@@ -15,5 +15,6 @@ namespace Sylius\Bundle\FixturesBundle\Suite;
 
 interface SuiteFactoryInterface
 {
+    /** @param array<string, array<mixed>> $configuration */
     public function createSuite(string $name, array $configuration): SuiteInterface;
 }

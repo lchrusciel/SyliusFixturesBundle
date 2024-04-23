@@ -54,6 +54,7 @@ final class SuiteFactory implements SuiteFactoryInterface
         return $suite;
     }
 
+    /** @param array{name: string, options: array<mixed>, priority: ?int} $fixtureAttributes */
     private function addFixtureToSuite(Suite $suite, string $fixtureAlias, array $fixtureAttributes): void
     {
         Assert::keyExists($fixtureAttributes, 'name');
@@ -66,6 +67,7 @@ final class SuiteFactory implements SuiteFactoryInterface
         $suite->addFixture($fixture, $fixtureOptions, $fixturePriority);
     }
 
+    /** @param array{name: string, options: array<mixed>, priority: ?int} $listenerAttributes */
     private function addListenerToSuite(Suite $suite, string $listenerName, array $listenerAttributes): void
     {
         Assert::keyExists($listenerAttributes, 'options');

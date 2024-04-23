@@ -17,8 +17,8 @@ use Webmozart\Assert\Assert;
 
 final class ListenerRegistry implements ListenerRegistryInterface
 {
-    /** @var array */
-    private $listeners = [];
+    /** @var array<string, ListenerInterface> */
+    private array $listeners = [];
 
     public function addListener(ListenerInterface $listener): void
     {

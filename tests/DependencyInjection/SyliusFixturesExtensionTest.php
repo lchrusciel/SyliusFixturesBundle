@@ -58,14 +58,14 @@ final class SyliusFixturesExtensionTest extends AbstractExtensionTestCase
         $this->container->setDefinition(
             'acme.fixture_autoconfigured',
             (new Definition())
-                ->setClass($this->getMockClass(FixtureInterface::class))
+                ->setClass($this->createMock(FixtureInterface::class)::class)
                 ->setAutoconfigured(true),
         );
 
         $this->container->setDefinition(
             'acme.listener_autoconfigured',
             (new Definition())
-                ->setClass($this->getMockClass(ListenerInterface::class))
+                ->setClass($this->createMock(ListenerInterface::class)::class)
                 ->setAutoconfigured(true),
         );
 

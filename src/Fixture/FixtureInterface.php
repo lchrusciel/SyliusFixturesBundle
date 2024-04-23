@@ -17,6 +17,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 interface FixtureInterface extends ConfigurationInterface
 {
+    /** @param array<mixed> $options */
     public function load(array $options): void;
 
     public function getName(): string;

@@ -18,5 +18,6 @@ use Sylius\Bundle\FixturesBundle\Suite\SuiteInterface;
 
 interface FixtureLoaderInterface
 {
+    /** @param array<mixed> $options */
     public function load(SuiteInterface $suite, FixtureInterface $fixture, array $options): void;
 }

@@ -14,20 +14,20 @@ declare(strict_types=1);
 namespace Sylius\Bundle\FixturesBundle\Listener;
 
 use Doctrine\Common\DataFixtures\Purger\PHPCRPurger;
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ODM\PHPCR\DocumentManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 final class PHPCRPurgerListener extends AbstractListener implements BeforeSuiteListenerInterface
 {
-    /** @var ManagerRegistry */
-    private $managerRegistry;
+    private ManagerRegistry $managerRegistry;
 
     public function __construct(ManagerRegistry $managerRegistry)
     {
         $this->managerRegistry = $managerRegistry;
     }
 
+    /** @param array{managers: string[]} $options */
     public function beforeSuite(SuiteEvent $suiteEvent, array $options): void
     {
         foreach ($options['managers'] as $managerName) {

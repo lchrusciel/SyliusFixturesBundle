@@ -21,7 +21,7 @@ interface ListenerRegistryInterface
     public function getListener(string $name): ListenerInterface;
 
     /**
-     * @return array|ListenerInterface[] Name indexed
+     * @return array<string, ListenerInterface> Name indexed
      */
     public function getListeners(): array;
 }

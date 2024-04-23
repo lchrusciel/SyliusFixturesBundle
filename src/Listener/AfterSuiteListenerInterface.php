@@ -15,5 +15,6 @@ namespace Sylius\Bundle\FixturesBundle\Listener;
 
 interface AfterSuiteListenerInterface extends ListenerInterface
 {
+    /** @param array<mixed> $options */
     public function afterSuite(SuiteEvent $suiteEvent, array $options): void;
 }

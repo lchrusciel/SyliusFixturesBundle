@@ -25,13 +25,16 @@ final class SampleFixture extends AbstractFixture
         $this->entityManager = $entityManager;
     }
 
+    /** @param array<string, array<mixed>> $options */
     public function load(array $options): void
     {
-        $this->entityManager
+        $statement = $this->entityManager
             ->getConnection()
-            ->prepare('INSERT INTO testTable VALUES (?);')
-            ->execute(['test'])
+            ->prepare('INSERT INTO testTable VALUES (:test);')
         ;
+
+        $statement->bindValue('test', 'test');
+        $statement->executeStatement();
     }
 
     public function getName(): string

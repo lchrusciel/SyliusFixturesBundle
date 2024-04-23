@@ -15,5 +15,6 @@ namespace Sylius\Bundle\FixturesBundle\Listener;
 
 interface AfterFixtureListenerInterface extends ListenerInterface
 {
+    /** @param array<mixed> $options */
     public function afterFixture(FixtureEvent $fixtureEvent, array $options): void;
 }
