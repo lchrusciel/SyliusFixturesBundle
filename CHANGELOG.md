@@ -1,3 +1,11 @@
+## CHANGELOG FOR `1.9.x`
+
+## v1.9.0 (2024-07-30)
+
+#### Details
+
+- [#110](https://github.com/Sylius/SyliusFixturesBundle/issues/110) [Maintenance] Allow installing Symfony 7 ([@NoResponseMate](https://github.com/NoResponseMate))
+
 ## CHANGELOG FOR `1.8.x`
 
 ## v1.8.0 (2022-10-18)
