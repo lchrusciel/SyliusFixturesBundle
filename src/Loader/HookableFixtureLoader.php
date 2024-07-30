@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -21,11 +21,8 @@ use Sylius\Bundle\FixturesBundle\Suite\SuiteInterface;
 
 final class HookableFixtureLoader implements FixtureLoaderInterface
 {
-    private FixtureLoaderInterface $decoratedFixtureLoader;
-
-    public function __construct(FixtureLoaderInterface $decoratedFixtureLoader)
+    public function __construct(private FixtureLoaderInterface $decoratedFixtureLoader)
     {
-        $this->decoratedFixtureLoader = $decoratedFixtureLoader;
     }
 
     public function load(SuiteInterface $suite, FixtureInterface $fixture, array $options): void

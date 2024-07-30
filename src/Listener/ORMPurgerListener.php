@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,18 +20,17 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 final class ORMPurgerListener extends AbstractListener implements BeforeSuiteListenerInterface
 {
-    private ManagerRegistry $managerRegistry;
-
+    /** @var array<string, int> */
     private static array $purgeModes = [
         'delete' => ORMPurger::PURGE_MODE_DELETE,
         'truncate' => ORMPurger::PURGE_MODE_TRUNCATE,
     ];
 
-    public function __construct(ManagerRegistry $managerRegistry)
+    public function __construct(private ManagerRegistry $managerRegistry)
     {
-        $this->managerRegistry = $managerRegistry;
     }
 
+    /** @param array{managers: string[], exclude: array<int|string>, mode: string} $options */
     public function beforeSuite(SuiteEvent $suiteEvent, array $options): void
     {
         foreach ($options['managers'] as $managerName) {
@@ -39,7 +38,7 @@ final class ORMPurgerListener extends AbstractListener implements BeforeSuiteLis
             $manager = $this->managerRegistry->getManager($managerName);
 
             $purger = new ORMPurger($manager, $options['exclude']);
-            $purger->setPurgeMode(static::$purgeModes[$options['mode']]);
+            $purger->setPurgeMode(self::$purgeModes[$options['mode']]);
             $purger->purge();
         }
     }

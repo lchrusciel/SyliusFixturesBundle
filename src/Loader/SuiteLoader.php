@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -18,17 +18,13 @@ use Sylius\Bundle\FixturesBundle\Suite\SuiteInterface;
 
 final class SuiteLoader implements SuiteLoaderInterface
 {
-    private FixtureLoaderInterface $fixtureLoader;
-
-    public function __construct(FixtureLoaderInterface $fixtureLoader)
+    public function __construct(private FixtureLoaderInterface $fixtureLoader)
     {
-        $this->fixtureLoader = $fixtureLoader;
     }
 
     public function load(SuiteInterface $suite): void
     {
         /** @var FixtureInterface $fixture */
-        /** @var array $fixtureOptions */
         foreach ($suite->getFixtures() as $fixture => $fixtureOptions) {
             $this->fixtureLoader->load($suite, $fixture, $fixtureOptions);
         }

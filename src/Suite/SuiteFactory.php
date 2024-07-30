@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,20 +20,11 @@ use Webmozart\Assert\Assert;
 
 final class SuiteFactory implements SuiteFactoryInterface
 {
-    private FixtureRegistryInterface $fixtureRegistry;
-
-    private ListenerRegistryInterface $listenerRegistry;
-
-    private Processor $optionsProcessor;
-
     public function __construct(
-        FixtureRegistryInterface $fixtureRegistry,
-        ListenerRegistryInterface $listenerRegistry,
-        Processor $optionsProcessor,
+        private FixtureRegistryInterface $fixtureRegistry,
+        private ListenerRegistryInterface $listenerRegistry,
+        private Processor $optionsProcessor,
     ) {
-        $this->fixtureRegistry = $fixtureRegistry;
-        $this->listenerRegistry = $listenerRegistry;
-        $this->optionsProcessor = $optionsProcessor;
     }
 
     public function createSuite(string $name, array $configuration): SuiteInterface
@@ -54,6 +45,7 @@ final class SuiteFactory implements SuiteFactoryInterface
         return $suite;
     }
 
+    /** @param array{name: string, options: array<mixed>, priority: ?int} $fixtureAttributes */
     private function addFixtureToSuite(Suite $suite, string $fixtureAlias, array $fixtureAttributes): void
     {
         Assert::keyExists($fixtureAttributes, 'name');
@@ -66,6 +58,7 @@ final class SuiteFactory implements SuiteFactoryInterface
         $suite->addFixture($fixture, $fixtureOptions, $fixturePriority);
     }
 
+    /** @param array{name: string, options: array<mixed>, priority: ?int} $listenerAttributes */
     private function addListenerToSuite(Suite $suite, string $listenerName, array $listenerAttributes): void
     {
         Assert::keyExists($listenerAttributes, 'options');

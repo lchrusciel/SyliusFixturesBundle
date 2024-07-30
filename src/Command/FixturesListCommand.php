@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -21,16 +21,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class FixturesListCommand extends Command
 {
-    private SuiteRegistryInterface $suiteRegistry;
-
-    private FixtureRegistryInterface $fixtureRegistry;
-
-    public function __construct(SuiteRegistryInterface $suiteRegistry, FixtureRegistryInterface $fixtureRegistry)
-    {
+    public function __construct(
+        private SuiteRegistryInterface $suiteRegistry,
+        private FixtureRegistryInterface $fixtureRegistry,
+    ) {
         parent::__construct(null);
-
-        $this->suiteRegistry = $suiteRegistry;
-        $this->fixtureRegistry = $fixtureRegistry;
     }
 
     protected function configure(): void

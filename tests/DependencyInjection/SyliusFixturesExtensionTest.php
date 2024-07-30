@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -58,14 +58,14 @@ final class SyliusFixturesExtensionTest extends AbstractExtensionTestCase
         $this->container->setDefinition(
             'acme.fixture_autoconfigured',
             (new Definition())
-                ->setClass($this->getMockClass(FixtureInterface::class))
+                ->setClass($this->createMock(FixtureInterface::class)::class)
                 ->setAutoconfigured(true),
         );
 
         $this->container->setDefinition(
             'acme.listener_autoconfigured',
             (new Definition())
-                ->setClass($this->getMockClass(ListenerInterface::class))
+                ->setClass($this->createMock(ListenerInterface::class)::class)
                 ->setAutoconfigured(true),
         );
 

@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -19,14 +19,10 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 final class SuiteLoaderListener extends AbstractListener implements BeforeSuiteListenerInterface
 {
-    private SuiteRegistryInterface $suiteRegistry;
-
-    private SuiteLoaderInterface $suiteLoader;
-
-    public function __construct(SuiteRegistryInterface $suiteRegistry, SuiteLoaderInterface $suiteLoader)
-    {
-        $this->suiteRegistry = $suiteRegistry;
-        $this->suiteLoader = $suiteLoader;
+    public function __construct(
+        private SuiteRegistryInterface $suiteRegistry,
+        private SuiteLoaderInterface $suiteLoader,
+    ) {
     }
 
     public function getName(): string
@@ -34,6 +30,7 @@ final class SuiteLoaderListener extends AbstractListener implements BeforeSuiteL
         return 'suite_loader';
     }
 
+    /** @param array{suites: string[]} $options */
     public function beforeSuite(SuiteEvent $suiteEvent, array $options): void
     {
         foreach ($options['suites'] as $suiteName) {

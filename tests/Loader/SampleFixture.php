@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -25,13 +25,16 @@ final class SampleFixture extends AbstractFixture
         $this->entityManager = $entityManager;
     }
 
+    /** @param array<string, array<mixed>> $options */
     public function load(array $options): void
     {
-        $this->entityManager
+        $statement = $this->entityManager
             ->getConnection()
-            ->prepare('INSERT INTO testTable VALUES (?);')
-            ->execute(['test'])
+            ->prepare('INSERT INTO testTable VALUES (:test);')
         ;
+
+        $statement->bindValue('test', 'test');
+        $statement->executeStatement();
     }
 
     public function getName(): string

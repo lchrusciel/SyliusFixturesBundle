@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -18,18 +18,12 @@ use Sylius\Bundle\FixturesBundle\Suite\SuiteInterface;
 
 final class FixtureEvent
 {
-    private SuiteInterface $suite;
-
-    private FixtureInterface $fixture;
-
-    /** @var array */
-    private $fixtureOptions;
-
-    public function __construct(SuiteInterface $suite, FixtureInterface $fixture, array $fixtureOptions)
-    {
-        $this->suite = $suite;
-        $this->fixture = $fixture;
-        $this->fixtureOptions = $fixtureOptions;
+    /** @param array<mixed> $fixtureOptions */
+    public function __construct(
+        private SuiteInterface $suite,
+        private FixtureInterface $fixture,
+        private array $fixtureOptions,
+    ) {
     }
 
     public function suite(): SuiteInterface
@@ -42,6 +36,7 @@ final class FixtureEvent
         return $this->fixture;
     }
 
+    /** @return array<mixed> */
     public function fixtureOptions(): array
     {
         return $this->fixtureOptions;

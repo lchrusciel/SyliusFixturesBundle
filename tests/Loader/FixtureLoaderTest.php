@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -32,8 +32,7 @@ final class FixtureLoaderTest extends KernelTestCase
 
     private EntityManagerInterface $em;
 
-    /** @var MockObject|LoggerInterface */
-    private $logger;
+    private MockObject|LoggerInterface $logger;
 
     protected static $container;
 
@@ -169,6 +168,11 @@ final class FixtureLoaderTest extends KernelTestCase
         $this->commandTester->execute([], ['interactive' => false]);
     }
 
+    /**
+     * @param array<string, array<mixed>> $options
+     *
+     * @return array<string, array{name: string, options: array<string, array<mixed>>}>
+     */
     private function createConfiguration(string $name, array $options = []): array
     {
         return [

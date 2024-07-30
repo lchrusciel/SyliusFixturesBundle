@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,17 +15,17 @@ namespace Sylius\Bundle\FixturesBundle\Suite;
 
 final class LazySuiteRegistry implements SuiteRegistryInterface
 {
-    private SuiteFactoryInterface $suiteFactory;
-
+    /** @var array<string, array<mixed>> */
     private array $suiteDefinitions = [];
 
+    /** @var array<string, SuiteInterface>> */
     private array $suites = [];
 
-    public function __construct(SuiteFactoryInterface $suiteFactory)
+    public function __construct(private SuiteFactoryInterface $suiteFactory)
     {
-        $this->suiteFactory = $suiteFactory;
     }
 
+    /** @param array<mixed> $configuration */
     public function addSuite(string $name, array $configuration): void
     {
         $this->suiteDefinitions[$name] = $configuration;

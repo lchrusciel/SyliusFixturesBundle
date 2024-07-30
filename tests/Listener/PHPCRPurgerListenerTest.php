@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sylius\Bundle\FixturesBundle\Tests\Listener;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use PHPUnit\Framework\TestCase;
 use Sylius\Bundle\FixturesBundle\Listener\PHPCRPurgerListener;
@@ -41,6 +41,9 @@ final class PHPCRPurgerListenerTest extends TestCase
 
     protected function getConfiguration(): ConfigurationInterface
     {
-        return new PHPCRPurgerListener($this->getMockBuilder(ManagerRegistry::class)->getMock());
+        /** @var ManagerRegistry $registry */
+        $registry = $this->createMock(ManagerRegistry::class);
+
+        return new PHPCRPurgerListener($registry);
     }
 }

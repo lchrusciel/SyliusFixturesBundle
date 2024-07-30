@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -24,19 +24,12 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 final class FixturesLoadCommand extends Command
 {
-    private SuiteRegistryInterface $suiteRegistry;
-
-    private SuiteLoaderInterface $suiteLoader;
-
-    private string $environment;
-
-    public function __construct(SuiteRegistryInterface $suiteRegistry, SuiteLoaderInterface $suiteLoader, string $environment)
-    {
+    public function __construct(
+        private SuiteRegistryInterface $suiteRegistry,
+        private SuiteLoaderInterface $suiteLoader,
+        private string $environment,
+    ) {
         parent::__construct(null);
-
-        $this->suiteRegistry = $suiteRegistry;
-        $this->suiteLoader = $suiteLoader;
-        $this->environment = $environment;
     }
 
     protected function configure(): void

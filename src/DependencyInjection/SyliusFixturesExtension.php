@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -26,11 +26,13 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 final class SyliusFixturesExtension extends Extension implements PrependExtensionInterface
 {
+    /** @param array<mixed> $config */
     public function getConfiguration(array $config, ContainerBuilder $container): ConfigurationInterface
     {
         return new Configuration();
     }
 
+    /** @param array<array<mixed>> $configs */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
@@ -69,6 +71,7 @@ final class SyliusFixturesExtension extends Extension implements PrependExtensio
         }
     }
 
+    /** @param array{suites: array<string, array<mixed>>} $config */
     private function registerSuites(array $config, ContainerBuilder $container): void
     {
         $suiteRegistry = $container->findDefinition('sylius_fixtures.suite_registry');
